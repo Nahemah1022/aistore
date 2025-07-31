@@ -1,6 +1,9 @@
 name: Python ETL Tests
 on:
-  push:
+  workflow_run:
+    workflows: ["Container Images"]
+    types:
+      - completed
     branches:
       - main
   pull_request:
@@ -14,6 +17,9 @@ env:
 
 jobs:
   test:
+    # Only run if the "Container Images" workflow completed successfully, or if triggered by manual dispatch
+    if: >
+      github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     strategy:
       matrix:
         python-version: ['3.9','3.10','3.11','3.12','3.13']

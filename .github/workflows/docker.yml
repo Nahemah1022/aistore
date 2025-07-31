@@ -6,37 +6,37 @@ on:
   workflow_dispatch:
     inputs:
       build_util_image:
-        description: 'Build ais-util image (aistorage/ais-util)'
+        description: 'Build ais-util image (nahemah1022/ais-util)'
         required: true
         type: boolean
         default: false
 
       build_aisnode_image:
-        description: 'Build aisnode image (aistorage/aisnode)'
+        description: 'Build aisnode image (nahemah1022/aisnode)'
         required: true
         type: boolean
         default: false
 
       build_aisinit_image:
-        description: 'Build aisinit image (aistorage/ais-init)'
+        description: 'Build aisinit image (nahemah1022/ais-init)'
         required: true
         type: boolean
         default: false
 
       build_cluster_minimal_image:
-        description: 'Build cluster-minimal image (aistorage/cluster-minimal)'
+        description: 'Build cluster-minimal image (nahemah1022/cluster-minimal)'
         required: true
         type: boolean
         default: false
 
       build_authn_image:
-        description: 'Build AuthN (aistorage/authn)'
+        description: 'Build AuthN (nahemah1022/authn)'
         required: true
         type: boolean
         default: false
 
       build_gitlab_ci_image:
-        description: 'Build GitLab CI image (aistorage/gitlab-ci)'
+        description: 'Build GitLab CI image (nahemah1022/gitlab-ci)'
         required: true
         type: boolean
         default: false
@@ -47,12 +47,12 @@ on:
         default: 'latest'
 
 env:
-  UTIL_IMAGE: 'aistorage/ais-util'
-  AISNODE_IMAGE: 'aistorage/aisnode'
-  AISINIT_IMAGE: 'aistorage/ais-init'
-  CLUSTER_MINIMAL_IMAGE: 'aistorage/cluster-minimal'
-  CI_IMAGE: 'aistorage/gitlab-ci'
-  AUTHN_IMAGE: 'aistorage/authn'
+  UTIL_IMAGE: 'nahemah1022/ais-util'
+  AISNODE_IMAGE: 'nahemah1022/aisnode'
+  AISINIT_IMAGE: 'nahemah1022/ais-init'
+  CLUSTER_MINIMAL_IMAGE: 'nahemah1022/cluster-minimal'
+  CI_IMAGE: 'nahemah1022/gitlab-ci'
+  AUTHN_IMAGE: 'nahemah1022/authn'
 
 jobs:
   docker:
