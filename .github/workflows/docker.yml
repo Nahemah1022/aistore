@@ -58,7 +58,7 @@ jobs:
     if: ${{ inputs.build_aisnode_image || github.event_name == 'push' }}
     uses: ./.github/workflows/docker-build.yml
     with:
-      image_name: aistorage/aisnode
+      image_name: nahemah1022/aisnode
       image_tag: ${{ inputs.image_tag || 'dev' }}
       context_dir: deploy/prod/k8s/aisnode_container
       commit_sha: ${{ github.sha }}
@@ -67,11 +67,17 @@ jobs:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
 
+  python-etl:
+    if: ${{ github.event_name == 'push' }}
+    needs: aisnode
+    uses: ./.github/workflows/test-python-etl.yml
+    secrets: inherit
+
   aisnode-tracing:
     if: ${{ inputs.build_aisnode_image || github.event_name == 'push' }}
     uses: ./.github/workflows/docker-build.yml
     with:
-      image_name: aistorage/aisnode
+      image_name: nahemah1022/aisnode
       image_tag: ${{ inputs.image_tag && format('{0}-oteltracing', inputs.image_tag) || 'dev-oteltracing' }}
       context_dir: deploy/prod/k8s/aisnode_container
       build_tags: oteltracing
@@ -85,7 +91,7 @@ jobs:
     if: ${{ inputs.build_aisinit_image || github.event_name == 'push' }}
     uses: ./.github/workflows/docker-build.yml
     with:
-      image_name: aistorage/ais-init
+      image_name: nahemah1022/ais-init
       image_tag: ${{ inputs.image_tag || 'dev' }}
       context_dir: deploy/prod/k8s/aisinit_container
       commit_sha: ${{ github.sha }}
